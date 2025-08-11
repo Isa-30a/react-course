@@ -1,7 +1,10 @@
+import React from "react";
+import { createRoot } from "react-dom/client";
+
 const Pizza = (props) => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, props.name),
-    React.createElement("p", {}, props.description)
+    React.createElement("p", {}, props.description),
   ]);
 };
 const App = () => {
@@ -23,5 +26,5 @@ const App = () => {
 };
 
 const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
+const root = createRoot.createRoot(container);
 root.render(React.createElement(App));
