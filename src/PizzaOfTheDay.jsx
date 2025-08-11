@@ -1,11 +1,11 @@
-import { usePizzaOfTheDay } from "./usePiizaOfTheday";
+import { usePizzaOfTheday } from "./usePizzaOfTheDay";
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
 
 const PizzaOftheDay = () => {
-  const pizzaOfTheDay = usePizzaOfTheDay();
+  const pizzaOfTheDay = usePizzaOfTheday();
   if (!pizzaOfTheDay) {
     return <div>Loading...</div>;
   }
