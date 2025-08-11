@@ -2,14 +2,20 @@ import { createRoot } from "react-dom/client";
 import Order from "./Orders";
 import { StrictMode } from "react";
 import PizzaOftheDay from "./PizzaOfTheDay";
+import Header from "./Header";
+import { CartContext } from "./context";
+
 const App = () => {
+  // You can wrap your entire application or just a part of it with the provider to share the cart state.
   return (
     <StrictMode>
-      <div>
-        <h1 className="logo">Padre Gino's Pizza – Order Now</h1>
-        <Order />
-        <PizzaOftheDay></PizzaOftheDay>
-      </div>
+      <CartContext.Provider>
+        <div>
+          <Header></Header>
+          <Order />
+          <PizzaOftheDay></PizzaOftheDay>
+        </div>
+      </CartContext.Provider>
     </StrictMode>
   );
 };
