@@ -23,16 +23,16 @@ export default function Order() {
     );
   }
 
+  useEffect(() => {
+    fetchPizzaTypes();
+  }, []);
+
   async function fetchPizzaTypes() {
     const pizzasRes = await fetch("/api/pizzas");
     const pizzasJson = await pizzasRes.json();
     setPizzaTypes(pizzasJson);
     setLoading(false);
   }
-
-  useEffect(() => {
-    fetchPizzaTypes();
-  }, []);
 
   return (
     <div className="order">
@@ -46,11 +46,11 @@ export default function Order() {
               value={pizzaType}
               onChange={(e) => setPizzaType(e.target.value)}
             >
-              {pizzaTypes.map((pizza) => {
+              {pizzaTypes.map((pizza) => (
                 <option key={pizza.id} value={pizza.id}>
                   {pizza.name}
-                </option>;
-              })}
+                </option>
+              ))}
             </select>
           </div>
           <div>
