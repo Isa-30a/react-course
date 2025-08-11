@@ -1,8 +1,13 @@
 import { useEffect, useState, useContext } from "react";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import Pizza from "../Pizza";
 import Cart from "../Cart";
 import { CartContext } from "../context";
 // NOTE: about the name of the file. this is a convention from TanStack. 4 saying "ok, i want you to lazy load this"
+
+export const Route = createLazyFileRoute("/order")({
+  component: Order,
+});
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
