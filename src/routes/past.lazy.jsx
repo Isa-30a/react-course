@@ -2,7 +2,7 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getPastOrders from "../api/getPastOrders";
-import getPastOrder from "../api/getPastOrders";
+import getPastOrder from "../api/getPastOrder";
 import Modal from "../Modal";
 
 export const Route = createLazyFileRoute("/past")({
