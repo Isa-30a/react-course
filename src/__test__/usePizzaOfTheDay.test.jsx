@@ -41,11 +41,22 @@ const testPizza = {
 //  it frequently in our code base.
 // We can make this better though. Let's rewrite our test to look like this:
 
-import { renderHook } from "@testing-library/react"; // change import
+import { renderHook, waitFor } from "@testing-library/react"; // change import
 
 test("to be null on initial load", async () => {
   fetch.mockResponseOnce(JSON.stringify(testPizza));
   // Instead of creating a custom component, simply pass the hook to renderHook for a concise test.
   const { result } = renderHook(() => usePizzaOfTheday());
   expect(result.current).toBeUndefined();
+});
+
+test("test to call the api and give back the pizza of the day", async () => {
+  fetch.mockResponseOnce(JSON.stringify(testPizza));
+  const { result } = renderHook(() => usePizzaOfTheday());
+  // waitFor -> run this function continually until no longer throws an error
+  await waitFor(() => {
+    //run it until it doesnt throws an error
+    expect(result.current).toEqual(testPizza);
+    expect(fetchMocker).toBeCalledWith("/api/pizza-of-the-day");
+  });
 });
