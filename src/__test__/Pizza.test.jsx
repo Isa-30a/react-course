@@ -1,7 +1,8 @@
-import { render } from "@testing-library/react";
-import { expect, test } from "vitest";
+import { render, cleanup } from "@testing-library/react";
+import { expect, test, afterEach } from "vitest";
 import Pizza from "../Pizza";
 
+afterEach(cleanup);
 // you want this to know which test is
 test("alt test render on Pizza image", async () => {
   const name = "My favorite Pizza";
@@ -12,8 +13,15 @@ test("alt test render on Pizza image", async () => {
   );
 
   const img = screen.getByRole("img");
-  // Para imprimir algo no console durante o teste:
-  console.log(img); // ou console.log(img.src), etc.
   expect(img.src).toBe(src);
   expect(img.alt).toBe(name);
+});
+
+test("To have default image if none os provided", async () => {
+  const screen = render(
+    <Pizza name="jue" description="Super coool piiitzza"></Pizza>
+  );
+
+  const img = screen.getByRole("img");
+  expect(img.src).not.toBe("");
 });
