@@ -7,7 +7,7 @@ const Modal = ({ children }) => {
   // we are goint to create one div, and were goint to reference the same div every single render
   if (!elementRef.current) {
     //in other words elementRef its the same div every single render
-    elementRef = document.createElement("div");
+    elementRef.current = document.createElement("div");
   }
 
   useEffect(
