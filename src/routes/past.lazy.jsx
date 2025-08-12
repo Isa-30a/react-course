@@ -30,7 +30,7 @@ function PastOrdersRoute() {
         <thead>
           <tr>
             <td>ID</td>
-            <td>DATE</td>
+            <td>Date</td>
             <td>Time</td>
           </tr>
         </thead>
@@ -45,10 +45,12 @@ function PastOrdersRoute() {
           ))}
         </tbody>
       </table>
+
       <div className="pages">
         <button disabled={page <= 1} onClick={() => setPage(page - 1)}>
           Previous
         </button>
+        <div>{page}</div>
         <button disabled={data.lenght < 10} onClick={() => setPage(page + 1)}>
           Next
         </button>
