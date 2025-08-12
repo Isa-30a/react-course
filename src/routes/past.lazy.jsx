@@ -5,18 +5,18 @@ import getPastOrders from "../api/getPastOrders";
 import getPastOrder from "../api/getPastOrders";
 import Modal from "../Modal";
 
+export const Route = createLazyFileRoute("/past")({
+  component: PastOrdersRoute,
+});
+
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
 
-export const Route = createLazyFileRoute("/past")({
-  component: PastOrdersRoute,
-});
-
 function PastOrdersRoute() {
   const [page, setPage] = useState(1);
-  const [focusedOrder, setFocusedOrder] = useState(undefined);
+  const [focusedOrder, setFocusedOrder] = useState();
   const { isLoading, data } = useQuery({
     //unique thing to this query so it knows later if have seen that before or not
     queryKey: ["past-orders", page],
@@ -27,9 +27,9 @@ function PastOrdersRoute() {
   const { isLoading: isLoadingPastOrder, data: pastOrderData } = useQuery({
     queryKey: ["past-order", focusedOrder],
     queryFn: () => getPastOrder(focusedOrder),
-    staleTime: 24 * 60 * 60 * 1000,
     //right here we just want to obtain the boolean value. Avoiding falsy and truthy values
     enabled: !!focusedOrder,
+    staleTime: 24 * 60 * 60 * 1000,
   });
 
   if (isLoading) {
@@ -110,7 +110,7 @@ function PastOrdersRoute() {
           ) : (
             <p>Loading …</p>
           )}
-          <button onClick={() => setFocusedOrder(undefined)}>Close</button>
+          <button onClick={() => setFocusedOrder()}>Close</button>
         </Modal>
       ) : null}
     </div>
