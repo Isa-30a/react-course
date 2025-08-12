@@ -10,4 +10,23 @@ import Cart from "../Cart";
 test("Snapshot with nothing in cart", () => {
   const { asFragment } = render(<Cart cart={[]}></Cart>);
   expect(asFragment()).toMatchSnapshot();
+  //   expect(asFragment()).toMatchInlineSnapshot(`
+  //     <DocumentFragment>
+  //       <div
+  //         class="cart"
+  //       >
+  //         <h2>
+  //           Cart
+  //         </h2>
+  //         <ul />
+  //         <p>
+  //           Total: $0.00
+  //         </p>
+  //         <button>
+  //           Checkout
+  //         </button>
+  //       </div>
+  //     </DocumentFragment>
+  //   `);
+  //   //
 });
