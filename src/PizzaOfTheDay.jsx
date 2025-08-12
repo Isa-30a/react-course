@@ -5,7 +5,7 @@ const intl = new Intl.NumberFormat("en-US", {
 });
 
 const PizzaOftheDay = () => {
-  const pizzaOfTheDay = usePizzaOfTheday();
+  const pizzaOfTheDay = usePizzaOfTheday(undefined);
   if (!pizzaOfTheDay) {
     return <div>Loading...</div>;
   }
