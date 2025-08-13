@@ -1,6 +1,6 @@
 import { render } from "vitest-browser-react";
 import { expect, test } from "vitest";
-import Pizza from "../src/Pizza";
+import Pizza from "../Pizza";
 
 test("alt text renders on image", async () => {
   const name = "My favorite Pizza";
@@ -12,6 +12,6 @@ test("alt text renders on image", async () => {
 
   const img = screen.getByRole("img");
   await expect.element(img).toBeInTheDocument();
-  await expect.element(img).toHaveAttibute("src", src);
-  await expect.element(img).toHaveAttibute("alt", name);
+  await expect.element(img).toHaveAttribute("src", src);
+  await expect.element(img).toHaveAttribute("alt", name);
 });
