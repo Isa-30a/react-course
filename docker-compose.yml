@@ -1,0 +1,18 @@
+services:
+  api:
+    build:
+      context: .
+      target: api
+    expose:
+      - 3000
+    environment:
+      - NODE_ENV=production
+
+  frontend:
+    build:
+      context: .
+      target: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api
