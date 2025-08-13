@@ -10,10 +10,14 @@ function ContactRoute() {
   //a mutation is a way of say "its changing something" -> PSOT, PUT, PATCH
   const mutation = useMutation({
     //whenever youre ready call this function this is the function that calls the api
-    mutationFn: function (e) {
-      e.preventDefault();
+    mutationFn: function (
+      formData
+      //or e in a previous version
+    ) {
+      //you can deleat this in react 19
+      // e.preventDefault();
       //Formdata comes from the browser not react
-      const formData = new FormData(e.target);
+      // const formData = new FormData(e.target);
       //e.target will be the form
 
       return postContact(
@@ -31,7 +35,11 @@ function ContactRoute() {
         <h3>Submitted</h3>
       ) : (
         //right here mutattion.mutate -> actually its not just calling the function up (mutationFn) its doing a lot of others things too
-        <form onSubmit={mutation.mutate}>
+        <form
+          //with the react 19 you can use just action instead of onSubmit
+          action={mutation.mutate}
+          // onSubmit={mutation.mutate}
+        >
           <input name="name" placeholder="Name" />
           <input name="email" placeholder="Email" type="email" />
           <textarea name="message" placeholder="Message" />
